@@ -1,0 +1,38 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cloud-client-app
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        # 通过名称来访问consul中多个相同应用名称的provider
+        service-name: cloud-data-process
+        # 这里要设置false，否则会把自己注册到consul中，并提供服务，轮询时会找自己
+        register: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 6000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000

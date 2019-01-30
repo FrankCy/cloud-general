@@ -16,6 +16,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cloud-data-process</module>
+        <module>cloud-client-app</module>
+        <module>cloud-common</module>
     </modules>
 
     <properties>

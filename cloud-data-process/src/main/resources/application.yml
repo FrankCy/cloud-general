@@ -35,6 +35,10 @@ spring:
     consul:
       host: 127.0.0.1
       port: 8500
+      discovery:
+        # 健康检测20s once
+        health-check-interval: 20s
+        health-check-path: /health
 
 #Management
 management:
