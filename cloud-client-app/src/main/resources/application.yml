@@ -18,21 +18,32 @@ management:
     web:
       exposure:
         include: hystrix.stream
-feign:
-  hystrix:
-    enabled: true
 
+# 设置超时
 ribbon:
   ConnectTimeout: 6000
-  ReadTimeout: 6000
+  ReadTimeout: 12000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 0
 
+# 设置Hystrix熔断
+feign:
+  hystrix:
+    enabled: true
 hystrix:
+  shareSecrutiyContext: true
   command:
     default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 100000
+        forceClosed: true
       execution:
         timeout:
         isolation:
           thread:
-            timeoutInMilliseconds: 15000
+            timeoutInMilliseconds: 60000
+
+# 配置Feign日志
+logging:
+  level:
+    com.bdjr.client.app.feign.company.CompanyFeign: DEBUG

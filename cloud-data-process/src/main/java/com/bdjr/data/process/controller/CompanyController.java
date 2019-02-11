@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CompanyController {
 
-    @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertCompany", method = RequestMethod.GET)
     public String insertCompany(CompanyUser companyUser){
 
         //声明实体对象
