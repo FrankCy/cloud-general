@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdjr.data.process.mapper.CompanyDao" >
+    <resultMap id="BaseResultMap" type="com.spring.cloud.common.po.Company">
+        <id column="c_id" jdbcType="BIGINT" property="cId" />
+        <result column="c_name" jdbcType="VARCHAR" property="cName" />
+        <result column="c_des" jdbcType="VARCHAR" property="cDes" />
+        <result column="c_code" jdbcType="VARCHAR" property="cCode" />
+    </resultMap>
+
+    <sql id="BASE_TABLE">
+      company
+    </sql>
+
+    <sql id="BASE_COLUMN">
+      c_id,c_name,c_des,c_code
+    </sql>
+
+    <insert id="insertCompany" parameterType="com.spring.cloud.common.po.Company">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            c_name,c_des,
+            <if test="cCode != null">
+                c_code,
+            </if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{cName, jdbcType=VARCHAR},#{cDes, jdbcType=VARCHAR},
+            <if test="cCode != null">
+                #{cCode, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findAllCompany" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
+
+</mapper>

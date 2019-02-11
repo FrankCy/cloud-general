@@ -6,7 +6,6 @@ import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.vo.CompanyUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +27,12 @@ public class CompanyController {
     protected CompanyService companyService;
 
     /**
-     * 新增公司信息
-     * @param companyUser
-     * @return
+     * @description：新增公司信息
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/11 下午4:27
+     * @mofified By:
      */
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     public BdjrResult insertCompany(CompanyUser companyUser){

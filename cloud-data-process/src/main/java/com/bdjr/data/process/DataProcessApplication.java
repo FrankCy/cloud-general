@@ -1,5 +1,6 @@
 package com.bdjr.data.process;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @mofified By:
  */
 @SpringBootApplication
+@MapperScan("com.bdjr.data.process.mapper")
 public class DataProcessApplication {
     public static void main(String[] args) {
         SpringApplication.run(DataProcessApplication.class, args);

@@ -1,8 +1,11 @@
 package com.bdjr.data.process.controller;
 
+import com.bdjr.data.process.config.CompanyConfig;
+import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CompanyController {
 
+    @Autowired
+    private CompanyConfig companyConfig;
+
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     public String insertCompany(@RequestBody CompanyUser companyUser){
 
@@ -30,7 +36,12 @@ public class CompanyController {
         //将VO内相同的值放到PO内
         BeanUtils.copyProperties(companyUser, company);
 
-        return companyUser.toString();
+        //判断并响应结果
+        if(companyConfig.insertCompany(company) > 0) {
+            return Constants.operaterSuccess;
+        } else  {
+            return Constants.operaterError;
+        }
     }
 
 
