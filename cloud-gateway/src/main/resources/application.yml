@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: case-gateway-server
+  cloud:
+    gateway:
+      routes:
+      - id: cloud-client-app
+        uri: http://127.0.0.1:8081
+        order: 0
+        predicates:
+        - Path=/**
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        # 健康检测20s once
+        health-check-interval: 10s
+        health-check-path: /gateway_health
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    enabled: false
+
+server:
+  #网关服务监听 9000 端口
+  port: 9000
+eureka:
+  client:
+    service-url:
+      #指定注册中心的地址，以便使用服务发现功能
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    #调整相关包的 log 级别，以便排查问题
+    org.springframework.cloud.gateway: debug
