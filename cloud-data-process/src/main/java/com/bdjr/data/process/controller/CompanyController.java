@@ -3,6 +3,7 @@ package com.bdjr.data.process.controller;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
 import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CompanyController {
 
-    @RequestMapping(value = "/insertCompany", method = RequestMethod.GET)
-    public String insertCompany(CompanyUser companyUser){
+    @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
+    public String insertCompany(@RequestBody CompanyUser companyUser){
 
         //声明实体对象
         Company company = new Company();

@@ -26,10 +26,14 @@ ribbon:
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 0
 
-# 设置Hystrix熔断
 feign:
+  # 设置Hystrix熔断
   hystrix:
     enabled: true
+  # 设置okhttp替换默认feign client
+  okhttp:
+    enabled: true
+
 hystrix:
   shareSecrutiyContext: true
   command:
