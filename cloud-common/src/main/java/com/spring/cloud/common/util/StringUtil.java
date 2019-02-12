@@ -10,12 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author: HaijunLiu
- * @email: isaiah@sohu.com
  * @description：
- * @date: 2018/1/29 10:54
- * @mofified By:
  * @version 1.0
+ * @author: Yang.Chang
+ * @email: cy880708@163.com
+ * @date: 2019/2/12 下午3:38
+ * @mofified By:
  */
 public final class StringUtil {
 

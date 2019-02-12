@@ -4,6 +4,7 @@ import com.bdjr.data.process.config.CompanyConfig;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,14 @@ public class CompanyController {
         }
     }
 
-    @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
-    public PageResult<Company> findAllCompany(@RequestBody CompanyUser companyUser){
+    @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
+    public PageResult<Company> findAllCompany(CompanyUser companyUser,
+                                              @RequestParam("pageNum") Integer pageNum,
+                                              @RequestParam("pageSize") Integer pageSize){
+
+        PageBean pageBean = new PageBean();
+        pageBean.setPageSize(pageSize);
+        pageBean.setPageNum(pageNum);
 
         //声明实体对象
         Company company = new Company();
@@ -52,7 +59,7 @@ public class CompanyController {
         BeanUtils.copyProperties(companyUser, company);
 
         //查询公司信息
-        PageResult<Company> companyList = companyConfig.findAllCompany(company);
+        PageResult<Company> companyList = companyConfig.findAllCompany(company, pageBean);
 
         return companyList;
     }

@@ -19,11 +19,6 @@ public class CompanyUser extends Company {
      */
     private String userName;
 
-    /**
-     * 分页信息
-     */
-    private PageBean pageBean;
-
     public String getUserName() {
         return userName;
     }
@@ -32,11 +27,4 @@ public class CompanyUser extends Company {
         this.userName = userName;
     }
 
-    public PageBean getPageBean() {
-        return pageBean;
-    }
-
-    public void setPageBean(PageBean pageBean) {
-        this.pageBean = pageBean;
-    }
 }

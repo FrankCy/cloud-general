@@ -25,7 +25,7 @@ public class CompanyFallback implements CompanyFeign {
     }
 
     @Override
-    public PageResult<Company> findAllCompany(CompanyUser companyUser) {
+    public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
         PageResult dataResult = new PageResult();
         return dataResult;
     }

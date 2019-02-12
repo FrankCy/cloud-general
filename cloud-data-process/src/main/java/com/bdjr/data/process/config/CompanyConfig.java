@@ -3,6 +3,7 @@ package com.bdjr.data.process.config;
 import com.bdjr.data.process.mapper.CompanyDao;
 import com.github.pagehelper.Page;
 import com.spring.cloud.common.po.Company;
+import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,15 @@ public class CompanyConfig {
      * @date: 2018/11/29 上午10:38
      * @mofified By:
      */
-    public PageResult<Company> findAllCompany(Company company) {
-        Page<Company> companies = companyDao.findAllCompany(company);
-        return PageResult.getPageResult(companies);
+    public PageResult<Company> findAllCompany(Company company, PageBean pageBean) {
+
+        Page<Company> companyPage = companyDao.findAllCompany(company, pageBean.getPageNum(), pageBean.getPageSize(), pageBean.getOrderName(), pageBean.getOrderType());
+        if(companyPage.size() > 0) {
+            return PageResult.getPageResult(companyPage);
+        } else {
+            return null;
+        }
+
     }
 
 }

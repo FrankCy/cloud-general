@@ -4,10 +4,13 @@ import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.util.PageUtil;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.DataResult;
+import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,8 +61,15 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
-    public BdjrResult findAllCompany(CompanyUser companyUser){
-        PageResult<Company> company = companyService.findAllCompany(companyUser,0,10);
+    public BdjrResult findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize){
+
+        PageBean pageBean = new PageBean();
+        pageBean.setPageNum(pageNum);
+        pageBean.setPageSize(pageSize);
+
+        // 分页信息传递
+        PageResult<Company> company = companyService.findAllCompany(companyUser, pageBean);
+
         if(company.getList().size() > 0) {
             return new BdjrResult.Builder<>().success(new DataResult.Builder().build(company)).build();
         } else {

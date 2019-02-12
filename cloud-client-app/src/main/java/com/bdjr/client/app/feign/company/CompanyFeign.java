@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @version 1.0
@@ -26,7 +27,16 @@ public interface CompanyFeign {
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     String insertCompany(@RequestBody CompanyUser companyUser);
 
-    @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
-    PageResult<Company> findAllCompany(CompanyUser companyUser);
+    /**
+     * 分页查询
+     * @param companyUser
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
+    PageResult<Company> findAllCompany(CompanyUser companyUser,
+                                       @RequestParam(value = "pageNum", required = false) Integer pageNum,
+                                       @RequestParam(value = "pageSize", required = false) Integer pageSize);
 
 }

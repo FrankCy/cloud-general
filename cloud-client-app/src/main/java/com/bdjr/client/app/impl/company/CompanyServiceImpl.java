@@ -4,6 +4,7 @@ import com.bdjr.client.app.feign.company.CompanyFeign;
 import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public PageResult<Company> findAllCompany(CompanyUser companyUser, int pageNum, int pageSize) {
-        return companyFeign.findAllCompany(companyUser);
+    public PageResult<Company> findAllCompany(CompanyUser companyUser, PageBean pageBean) {
+        return companyFeign.findAllCompany(companyUser, new Integer(pageBean.getPageNum()), new Integer(pageBean.getPageSize()));
     }
 
 }

@@ -2,6 +2,7 @@ package com.bdjr.data.process.mapper;
 
 import com.github.pagehelper.Page;
 import com.spring.cloud.common.po.Company;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @version 1.0
@@ -26,13 +27,14 @@ public interface CompanyDao {
     int insertCompany(Company company);
 
     /**
-     * @description：查询
-     * @version 1.0
-     * @author: Yang.Chang
-     * @email: cy880708@163.com
-     * @date: 2018/11/16 下午1:30
-     * @mofified By:
+     * 查询
+     * @param company
+     * @param pageNum
+     * @param pageSize
+     * @param orderColumn
+     * @param orderType
+     * @return
      */
-    Page<Company> findAllCompany(Company company);
+    Page<Company> findAllCompany(@Param("com") Company company, @Param("pageNum")  int pageNum, @Param("pageSize") int pageSize, @Param("orderColumn")  String orderColumn, @Param("orderType")  String orderType);
 
 }
