@@ -25,6 +25,11 @@ public class CompanyFallback implements CompanyFeign {
     }
 
     @Override
+    public String deleteCompany(String cId) {
+        return new String("删除公司信息失败！FeignClient");
+    }
+
+    @Override
     public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
         PageResult dataResult = new PageResult();
         return dataResult;

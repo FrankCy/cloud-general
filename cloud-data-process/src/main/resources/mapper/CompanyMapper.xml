@@ -33,6 +33,13 @@
         </trim>
     </insert>
 
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+      delete from
+      <include refid="BASE_TABLE"/>
+      where c_id = #{cId,jdbcType=VARCHAR}
+    </delete>
+
+
     <select id="findAllCompany" resultMap="BaseResultMap">
         SELECT
         <include refid="BASE_COLUMN"/>

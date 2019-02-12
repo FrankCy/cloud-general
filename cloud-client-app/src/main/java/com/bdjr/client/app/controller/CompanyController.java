@@ -46,9 +46,29 @@ public class CompanyController {
         String insertCompanyMessage = companyService.insertCompany(companyUser);
 
         if(!StringUtils.isEmpty(insertCompanyMessage) && Constants.operaterSuccess.equals(insertCompanyMessage)) {
-            return new BdjrResult.Builder<>().success("新增完毕").build();
+            return new BdjrResult.Builder<>().success("新增成功").build();
         } else {
             return new BdjrResult.Builder<>().failure("新增失败").build();
+        }
+    }
+
+    /**
+     * @description：删除公司
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/12 下午6:04
+     * @mofified By:
+     */
+    @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
+    public BdjrResult deleteCompany(String cId){
+
+        String deleteCompanyMessage = companyService.deleteCompany(cId);
+
+        if(!StringUtils.isEmpty(deleteCompanyMessage) && Constants.operaterSuccess.equals(deleteCompanyMessage)) {
+            return new BdjrResult.Builder<>().success("删除成功").build();
+        } else {
+            return new BdjrResult.Builder<>().failure("删除失败").build();
         }
     }
 
@@ -62,13 +82,8 @@ public class CompanyController {
      */
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
     public BdjrResult findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize){
-
-        PageBean pageBean = new PageBean();
-        pageBean.setPageNum(pageNum);
-        pageBean.setPageSize(pageSize);
-
         // 分页信息传递
-        PageResult<Company> company = companyService.findAllCompany(companyUser, pageBean);
+        PageResult<Company> company = companyService.findAllCompany(companyUser, pageNum, pageSize);
 
         if(company.getList().size() > 0) {
             return new BdjrResult.Builder<>().success(new DataResult.Builder().build(company)).build();

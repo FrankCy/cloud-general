@@ -2,7 +2,6 @@ package com.bdjr.client.app.service.company;
 
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
-import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 
 /**
@@ -25,10 +24,18 @@ public interface CompanyService {
     String insertCompany(CompanyUser companyUser);
 
     /**
-     * 查询公司信息
-     * @param companyUser
-     * @param pageBean
+     * 删除公司
+     * @param cId
      * @return
      */
-    PageResult<Company> findAllCompany(CompanyUser companyUser, PageBean pageBean);
+    String deleteCompany(String cId);
+
+    /**
+     * 查询公司信息
+     * @param companyUser
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize);
 }

@@ -43,6 +43,17 @@ public class CompanyController {
         }
     }
 
+    @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
+    public String deleteCompany(@RequestParam("cId") String cId){
+
+        //判断并响应结果
+        if(companyConfig.deleteCompany(cId) > 0) {
+            return Constants.operaterSuccess;
+        } else  {
+            return Constants.operaterError;
+        }
+    }
+
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
     public PageResult<Company> findAllCompany(CompanyUser companyUser,
                                               @RequestParam("pageNum") Integer pageNum,

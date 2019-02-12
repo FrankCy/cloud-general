@@ -30,6 +30,10 @@ public class CompanyConfig {
         return companyDao.insertCompany(company);
     }
 
+    public int deleteCompany(String id) {
+        return companyDao.deleteByPrimaryKey(id);
+    }
+
     /**
      * @description：查询公司列表
      * @version 1.0

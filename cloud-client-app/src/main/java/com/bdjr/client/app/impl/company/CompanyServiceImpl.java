@@ -32,8 +32,14 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public PageResult<Company> findAllCompany(CompanyUser companyUser, PageBean pageBean) {
-        return companyFeign.findAllCompany(companyUser, new Integer(pageBean.getPageNum()), new Integer(pageBean.getPageSize()));
+    public String deleteCompany(String cId) {
+        // TODO 这里可以做客户端的逻辑处理
+        return companyFeign.deleteCompany(cId);
+    }
+
+    @Override
+    public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
+        return companyFeign.findAllCompany(companyUser, pageNum, pageSize);
     }
 
 }

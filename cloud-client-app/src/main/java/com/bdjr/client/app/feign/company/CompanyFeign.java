@@ -27,6 +27,9 @@ public interface CompanyFeign {
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     String insertCompany(@RequestBody CompanyUser companyUser);
 
+    @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
+    String deleteCompany(@RequestParam(value = "cId") String cId);
+
     /**
      * 分页查询
      * @param companyUser

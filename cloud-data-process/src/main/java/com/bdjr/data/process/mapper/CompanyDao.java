@@ -26,6 +26,17 @@ public interface CompanyDao {
      */
     int insertCompany(Company company);
 
+
+    /**
+     * @description：删除
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/12 下午6:08
+     * @mofified By:
+     */
+    int deleteByPrimaryKey(@Param("cId") String cId);
+
     /**
      * 查询
      * @param company
