@@ -2,7 +2,9 @@ package com.bdjr.client.app.feign.company;
 
 import com.bdjr.client.app.fallback.company.CompanyFallback;
 import com.spring.cloud.common.config.FeignLogConfiguration;
+import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,8 @@ public interface CompanyFeign {
 
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
     String insertCompany(@RequestBody CompanyUser companyUser);
+
+    @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
+    PageResult<Company> findAllCompany(CompanyUser companyUser);
 
 }

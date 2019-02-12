@@ -33,6 +33,6 @@ public interface CompanyDao {
      * @date: 2018/11/16 下午1:30
      * @mofified By:
      */
-    Page<Company> findAllCompany();
+    Page<Company> findAllCompany(Company company);
 
 }

@@ -37,8 +37,9 @@ public class CompanyConfig {
      * @date: 2018/11/29 上午10:38
      * @mofified By:
      */
-    public PageResult<Company> findAllCompany() {
-        Page<Company> companies = companyDao.findAllCompany();
+    public PageResult<Company> findAllCompany(Company company) {
+        Page<Company> companies = companyDao.findAllCompany(company);
         return PageResult.getPageResult(companies);
     }
+
 }

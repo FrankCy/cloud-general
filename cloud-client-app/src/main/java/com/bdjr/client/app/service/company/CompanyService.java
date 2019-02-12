@@ -1,6 +1,8 @@
 package com.bdjr.client.app.service.company;
 
+import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageResult;
 
 /**
  * @version 1.0
@@ -21,4 +23,12 @@ public interface CompanyService {
      */
     String insertCompany(CompanyUser companyUser);
 
+    /**
+     * 查询公司信息
+     * @param companyUser
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageResult<Company> findAllCompany(CompanyUser companyUser, int pageNum, int pageSize);
 }

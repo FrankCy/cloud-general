@@ -1,11 +1,8 @@
 package com.spring.cloud.common.config;
 
 import com.spring.cloud.common.context.SpringCloudHystrixConcurrencyStrategy;
-import com.spring.cloud.common.intercepter.FeignUserContextInterceptor;
 import com.spring.cloud.common.intercepter.RestTemplateUserContextInterceptor;
 import com.spring.cloud.common.intercepter.UserContextInterceptor;
-import feign.Feign;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,15 +20,6 @@ public class CommonConfiguration extends WebMvcConfigurerAdapter{
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserContextInterceptor());
-    }
-	
-    /**
-     * 创建Feign请求拦截器，在发送请求前设置认证的用户上下文信息
-     */
-    @Bean
-    @ConditionalOnClass(Feign.class)
-    public FeignUserContextInterceptor feignTokenInterceptor() {
-        return new FeignUserContextInterceptor();
     }
 
     /**

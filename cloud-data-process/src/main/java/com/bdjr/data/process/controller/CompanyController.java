@@ -4,12 +4,10 @@ import com.bdjr.data.process.config.CompanyConfig;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @version 1.0
@@ -42,6 +40,21 @@ public class CompanyController {
         } else  {
             return Constants.operaterError;
         }
+    }
+
+    @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
+    public PageResult<Company> findAllCompany(@RequestBody CompanyUser companyUser){
+
+        //声明实体对象
+        Company company = new Company();
+
+        //将VO内相同的值放到PO内
+        BeanUtils.copyProperties(companyUser, company);
+
+        //查询公司信息
+        PageResult<Company> companyList = companyConfig.findAllCompany(company);
+
+        return companyList;
     }
 
 

@@ -1,7 +1,9 @@
 package com.bdjr.client.app.fallback.company;
 
 import com.bdjr.client.app.feign.company.CompanyFeign;
+import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageResult;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,4 +24,9 @@ public class CompanyFallback implements CompanyFeign {
         return new String("新增公司信息失败！FeignClient");
     }
 
+    @Override
+    public PageResult<Company> findAllCompany(CompanyUser companyUser) {
+        PageResult dataResult = new PageResult();
+        return dataResult;
+    }
 }

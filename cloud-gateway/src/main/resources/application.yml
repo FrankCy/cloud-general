@@ -3,6 +3,7 @@ spring:
     name: case-gateway-server
   cloud:
     gateway:
+      # 设置路由：所有的请求都会路由到http://127.0.0.1:8081/**
       routes:
       - id: cloud-client-app
         uri: http://127.0.0.1:8081

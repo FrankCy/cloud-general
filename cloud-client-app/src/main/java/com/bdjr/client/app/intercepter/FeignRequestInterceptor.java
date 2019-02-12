@@ -1,4 +1,4 @@
-package com.spring.cloud.common.intercepter;
+package com.bdjr.client.app.intercepter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

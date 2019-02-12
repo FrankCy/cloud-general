@@ -2,7 +2,9 @@ package com.bdjr.client.app.impl.company;
 
 import com.bdjr.client.app.feign.company.CompanyFeign;
 import com.bdjr.client.app.service.company.CompanyService;
+import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
+import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,9 @@ public class CompanyServiceImpl implements CompanyService {
         return companyFeign.insertCompany(companyUser);
     }
 
+    @Override
+    public PageResult<Company> findAllCompany(CompanyUser companyUser, int pageNum, int pageSize) {
+        return companyFeign.findAllCompany(companyUser);
+    }
 
 }
