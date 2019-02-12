@@ -54,6 +54,23 @@ public class CompanyController {
         }
     }
 
+    @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
+    public String updateCompany(@RequestBody CompanyUser companyUser){
+
+        //声明实体对象
+        Company company = new Company();
+
+        //将VO内相同的值放到PO内
+        BeanUtils.copyProperties(companyUser, company);
+
+        //判断并响应结果
+        if(companyConfig.updateCompany(company) > 0) {
+            return Constants.operaterSuccess;
+        } else  {
+            return Constants.operaterError;
+        }
+    }
+
     @RequestMapping(value = "/findCompanyById", method = RequestMethod.GET)
     public Company findCompanyById(@RequestParam("cId") String cId){
         Company company = companyConfig.selectById(cId);

@@ -32,6 +32,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public String updateCompany(CompanyUser companyUser) {
+        // TODO 这里可以做客户端的逻辑处理
+        return companyFeign.updateCompany(companyUser);
+    }
+
+    @Override
     public String deleteCompany(String cId) {
         // TODO 这里可以做客户端的逻辑处理
         return companyFeign.deleteCompany(cId);

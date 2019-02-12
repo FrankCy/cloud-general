@@ -39,6 +39,23 @@
       where c_id = #{cId,jdbcType=VARCHAR}
     </delete>
 
+    <insert id="updateCompany" parameterType="com.spring.cloud.common.po.Company">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <set>
+            <if test="cCode != null">
+                c_code = #{cCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cName != null">
+                c_name = #{cName,jdbcType=VARCHAR},
+            </if>
+            <if test="cDes != null">
+                c_des = #{cDes,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where c_id = #{cId,jdbcType=VARCHAR}
+    </insert>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="BASE_COLUMN" />

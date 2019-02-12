@@ -34,6 +34,10 @@ public class CompanyConfig {
         return companyDao.deleteByPrimaryKey(id);
     }
 
+    public int updateCompany(Company company) {
+        return companyDao.updateCompany(company);
+    }
+
     public Company selectById(String id) {
         return companyDao.selectByPrimaryKey(id);
     }

@@ -24,6 +24,13 @@ public interface CompanyService {
     String insertCompany(CompanyUser companyUser);
 
     /**
+     * 修改公司
+     * @param companyUser
+     * @return
+     */
+    String updateCompany(CompanyUser companyUser);
+
+    /**
      * 删除公司
      * @param cId
      * @return

@@ -30,6 +30,9 @@ public interface CompanyFeign {
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     String deleteCompany(@RequestParam(value = "cId") String cId);
 
+    @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
+    String updateCompany(@RequestBody CompanyUser companyUser);
+
     @RequestMapping(value = "/findCompanyById", method = RequestMethod.GET)
     Company findCompanyById(@RequestParam(value = "cId") String cId);
 

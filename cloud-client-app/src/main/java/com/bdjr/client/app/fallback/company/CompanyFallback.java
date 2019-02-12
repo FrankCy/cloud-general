@@ -30,6 +30,11 @@ public class CompanyFallback implements CompanyFeign {
     }
 
     @Override
+    public String updateCompany(CompanyUser companyUser) {
+        return new String("修改公司信息失败！FeignClient");
+    }
+
+    @Override
     public Company findCompanyById(String cId) {
         return null;
     }

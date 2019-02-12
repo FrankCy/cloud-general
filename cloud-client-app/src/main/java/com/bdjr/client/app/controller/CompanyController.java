@@ -4,13 +4,10 @@ import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
-import com.spring.cloud.common.util.PageUtil;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.DataResult;
-import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,8 +60,15 @@ public class CompanyController {
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     public BdjrResult deleteCompany(String cId){
 
+        //判空
         if(StringUtils.isEmpty(cId)) {
             return new BdjrResult.Builder<>().failure("参数传递错误，请联系管理员！").build();
+        }
+
+        //查询是否有对应数据
+        Company company = companyService.findCompanyById(cId);
+        if(company == null) {
+            return new BdjrResult.Builder<>().failure("未找到对应数据！").build();
         }
 
         String deleteCompanyMessage = companyService.deleteCompany(cId);
@@ -74,6 +78,38 @@ public class CompanyController {
         } else {
             return new BdjrResult.Builder<>().failure("删除失败").build();
         }
+    }
+
+    /**
+     * @description：修改公司
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/12 下午6:04
+     * @mofified By:
+     */
+    @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
+    public BdjrResult updateCompany(CompanyUser companyUser){
+
+        //判空
+        if(StringUtils.isEmpty(companyUser.getcId())) {
+            return new BdjrResult.Builder<>().failure("无效公司，修改失败！").build();
+        }
+
+        //查询是否有对应数据
+        Company company = companyService.findCompanyById(companyUser.getcId().toString());
+        if(company == null) {
+            return new BdjrResult.Builder<>().failure("未找到对应数据！").build();
+        }
+
+        String updateCompanyMessage = companyService.updateCompany(companyUser);
+
+        if(!StringUtils.isEmpty(updateCompanyMessage) && Constants.operaterSuccess.equals(updateCompanyMessage)) {
+            return new BdjrResult.Builder<>().success("修改成功").build();
+        } else {
+            return new BdjrResult.Builder<>().failure("修改失败").build();
+        }
+
     }
 
     /**
