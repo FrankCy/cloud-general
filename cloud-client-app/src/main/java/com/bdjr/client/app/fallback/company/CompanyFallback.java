@@ -30,6 +30,11 @@ public class CompanyFallback implements CompanyFeign {
     }
 
     @Override
+    public Company findCompanyById(String cId) {
+        return null;
+    }
+
+    @Override
     public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
         PageResult dataResult = new PageResult();
         return dataResult;

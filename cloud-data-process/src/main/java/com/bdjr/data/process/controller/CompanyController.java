@@ -54,6 +54,16 @@ public class CompanyController {
         }
     }
 
+    @RequestMapping(value = "/findCompanyById", method = RequestMethod.GET)
+    public Company findCompanyById(@RequestParam("cId") String cId){
+        Company company = companyConfig.selectById(cId);
+        if(company != null) {
+            return company;
+        } else {
+            return null;
+        }
+    }
+
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
     public PageResult<Company> findAllCompany(CompanyUser companyUser,
                                               @RequestParam("pageNum") Integer pageNum,

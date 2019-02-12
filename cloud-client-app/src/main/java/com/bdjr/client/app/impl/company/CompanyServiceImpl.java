@@ -38,6 +38,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public Company findCompanyById(String cId) {
+        // TODO 这里可以做客户端的逻辑处理
+        return companyFeign.findCompanyById(cId);
+    }
+
+    @Override
     public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
         return companyFeign.findAllCompany(companyUser, pageNum, pageSize);
     }

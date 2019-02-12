@@ -63,12 +63,36 @@ public class CompanyController {
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
     public BdjrResult deleteCompany(String cId){
 
+        if(StringUtils.isEmpty(cId)) {
+            return new BdjrResult.Builder<>().failure("参数传递错误，请联系管理员！").build();
+        }
+
         String deleteCompanyMessage = companyService.deleteCompany(cId);
 
         if(!StringUtils.isEmpty(deleteCompanyMessage) && Constants.operaterSuccess.equals(deleteCompanyMessage)) {
             return new BdjrResult.Builder<>().success("删除成功").build();
         } else {
             return new BdjrResult.Builder<>().failure("删除失败").build();
+        }
+    }
+
+    /**
+     * @description：根据主键查询单条数据
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/12 下午6:16
+     * @mofified By:
+     */
+    @RequestMapping(value = "/findCompanyById", method = RequestMethod.POST)
+    public BdjrResult findCompanyById(String cId){
+        // 分页信息传递
+        Company company = companyService.findCompanyById(cId);
+
+        if(company != null) {
+            return new BdjrResult.Builder<>().success("查询成功", company).build();
+        } else {
+            return new BdjrResult.Builder<>().failure("查询失败，未找到对应数据").build();
         }
     }
 

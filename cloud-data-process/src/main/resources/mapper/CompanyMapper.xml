@@ -39,6 +39,13 @@
       where c_id = #{cId,jdbcType=VARCHAR}
     </delete>
 
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="BASE_COLUMN" />
+        from
+        <include refid="BASE_TABLE"/>
+        where c_id = #{cId,jdbcType=VARCHAR}
+    </select>
 
     <select id="findAllCompany" resultMap="BaseResultMap">
         SELECT

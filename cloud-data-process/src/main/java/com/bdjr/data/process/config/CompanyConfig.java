@@ -34,6 +34,10 @@ public class CompanyConfig {
         return companyDao.deleteByPrimaryKey(id);
     }
 
+    public Company selectById(String id) {
+        return companyDao.selectByPrimaryKey(id);
+    }
+
     /**
      * @description：查询公司列表
      * @version 1.0

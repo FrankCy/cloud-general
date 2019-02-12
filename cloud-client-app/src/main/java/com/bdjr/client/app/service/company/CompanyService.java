@@ -31,6 +31,13 @@ public interface CompanyService {
     String deleteCompany(String cId);
 
     /**
+     * 根据主键查询
+     * @param cId
+     * @return
+     */
+    Company findCompanyById(String cId);
+
+    /**
      * 查询公司信息
      * @param companyUser
      * @param pageNum

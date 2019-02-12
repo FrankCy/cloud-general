@@ -37,6 +37,17 @@ public interface CompanyDao {
      */
     int deleteByPrimaryKey(@Param("cId") String cId);
 
+
+    /**
+     * @description：根据主键查询
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/12 下午6:08
+     * @mofified By:
+     */
+    Company selectByPrimaryKey(@Param("cId") String cId);
+
     /**
      * 查询
      * @param company
