@@ -1,6 +1,6 @@
 package com.bdjr.data.process.config;
 
-import com.bdjr.data.process.mapper.CompanyDao;
+import com.bdjr.data.process.mapper.CompanyMapper;
 import com.github.pagehelper.Page;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.PageBean;
@@ -24,22 +24,23 @@ public class CompanyConfig {
      * 公司查询dao
      */
     @Autowired
-    private CompanyDao companyDao;
+    private CompanyMapper companyMapper;
 
     public int insertCompany(Company company) {
-        return companyDao.insertCompany(company);
+        //TODO 具体的业务实现处理
+        return companyMapper.insertCompany(company);
     }
 
     public int deleteCompany(String id) {
-        return companyDao.deleteByPrimaryKey(id);
+        return companyMapper.deleteByPrimaryKey(id);
     }
 
     public int updateCompany(Company company) {
-        return companyDao.updateCompany(company);
+        return companyMapper.updateCompany(company);
     }
 
     public Company selectById(String id) {
-        return companyDao.selectByPrimaryKey(id);
+        return companyMapper.selectByPrimaryKey(id);
     }
 
     /**
@@ -52,7 +53,7 @@ public class CompanyConfig {
      */
     public PageResult<Company> findAllCompany(Company company, PageBean pageBean) {
 
-        Page<Company> companyPage = companyDao.findAllCompany(company, pageBean.getPageNum(), pageBean.getPageSize(), pageBean.getOrderName(), pageBean.getOrderType());
+        Page<Company> companyPage = companyMapper.findAllCompany(company, pageBean.getPageNum(), pageBean.getPageSize(), pageBean.getOrderName(), pageBean.getOrderType());
         if(companyPage.size() > 0) {
             return PageResult.getPageResult(companyPage);
         } else {

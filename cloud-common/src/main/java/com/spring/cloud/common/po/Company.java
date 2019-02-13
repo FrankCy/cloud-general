@@ -1,7 +1,5 @@
 package com.spring.cloud.common.po;
 
-import com.spring.cloud.common.vo.PageBean;
-
 import java.io.Serializable;
 
 /**

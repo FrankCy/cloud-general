@@ -14,7 +14,7 @@ import org.apache.ibatis.annotations.Param;
  * @date: 2019/2/11 下午5:07
  * @mofified By:
  */
-public interface CompanyDao {
+public interface CompanyMapper {
 
     /**
      * @description：新增

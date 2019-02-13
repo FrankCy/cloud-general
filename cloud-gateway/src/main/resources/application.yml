@@ -28,11 +28,6 @@ management:
 server:
   #网关服务监听 9000 端口
   port: 9000
-eureka:
-  client:
-    service-url:
-      #指定注册中心的地址，以便使用服务发现功能
-      defaultZone: http://localhost:8761/eureka/
 
 logging:
   level:
