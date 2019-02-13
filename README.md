@@ -38,6 +38,16 @@
 | POST | localhost:9000/findCompanyById | 根据主键查询公司 | {cId:'2809'} ```格式有误，自行修改```|
 | POST | localhost:9000/findAllCompany | 分页查询 | {pageNum:'1', pageSize:'10'} ```格式有误，自行修改```|
 
+## 实体脚本 ##
+```sql
+CREATE TABLE company(
+  c_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  c_name VARCHAR(255) NOT NULL ,
+  c_des VARCHAR(255) NOT NULL ,
+  c_code VARCHAR(255) NOT NULL
+) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+```
+
 ## 技术点 ##
 ### Gateway【网关】 ###
 ### Consul【服务和配置】 ###
