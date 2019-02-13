@@ -36,7 +36,7 @@
 | POST | localhost:9000/deleteCompany | 删除公司 | {cId:'2809'} ```格式有误，自行修改```|
 | POST | localhost:9000/updateCompany | 修改公司 | {cId:'2809', cName:'Bill', cCode: '999', cDes: '修改描述'} ```格式有误，自行修改```|
 | POST | localhost:9000/findCompanyById | 根据主键查询公司 | {cId:'2809'} ```格式有误，自行修改```|
-| POST | localhost:9000/findAllCompany | 分页查询 | {cId:'2809'} ```格式有误，自行修改```|
+| POST | localhost:9000/findAllCompany | 分页查询 | {pageNum:'1', pageSize:'10'} ```格式有误，自行修改```|
 
 ## 技术点 ##
 ### Gateway【网关】 ###
