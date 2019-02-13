@@ -33,6 +33,10 @@
 | 请求方式 | 地址 | 描述 | 参数 |
 |:--:|:--|:--|:--|
 | POST | localhost:9000/insertCompany | 新增公司 | {cName:'Frank', cCode: '1231232', cDes: '描述'} ```格式有误，自行修改```|
+| POST | localhost:9000/deleteCompany | 删除公司 | {cId:'2809'} ```格式有误，自行修改```|
+| POST | localhost:9000/updateCompany | 修改公司 | {cId:'2809', cName:'Bill', cCode: '999', cDes: '修改描述'} ```格式有误，自行修改```|
+| POST | localhost:9000/findCompanyById | 根据主键查询公司 | {cId:'2809'} ```格式有误，自行修改```|
+| POST | localhost:9000/findAllCompany | 分页查询 | {cId:'2809'} ```格式有误，自行修改```|
 
 ## 技术点 ##
 ### Gateway【网关】 ###

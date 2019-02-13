@@ -47,9 +47,7 @@ public interface CompanyService {
     /**
      * 查询公司信息
      * @param companyUser
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize);
+    PageResult<Company> findAllCompany(CompanyUser companyUser);
 }

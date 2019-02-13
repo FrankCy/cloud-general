@@ -39,13 +39,9 @@ public interface CompanyFeign {
     /**
      * 分页查询
      * @param companyUser
-     * @param pageNum
-     * @param pageSize
      * @return
      */
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
-    PageResult<Company> findAllCompany(CompanyUser companyUser,
-                                       @RequestParam(value = "pageNum", required = false) Integer pageNum,
-                                       @RequestParam(value = "pageSize", required = false) Integer pageSize);
+    PageResult<Company> findAllCompany(CompanyUser companyUser);
 
 }

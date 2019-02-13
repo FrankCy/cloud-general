@@ -82,13 +82,11 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
-    public PageResult<Company> findAllCompany(CompanyUser companyUser,
-                                              @RequestParam("pageNum") Integer pageNum,
-                                              @RequestParam("pageSize") Integer pageSize){
+    public PageResult<Company> findAllCompany(CompanyUser companyUser){
 
-        PageBean pageBean = new PageBean();
-        pageBean.setPageSize(pageSize);
-        pageBean.setPageNum(pageNum);
+        PageBean pageBean = companyUser.getPageBean();
+        pageBean.setPageSize(pageBean.getPageSize());
+        pageBean.setPageNum(pageBean.getPageNum());
 
         //声明实体对象
         Company company = new Company();

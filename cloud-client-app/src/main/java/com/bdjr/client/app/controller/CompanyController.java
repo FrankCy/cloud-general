@@ -6,6 +6,7 @@ import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.DataResult;
+import com.spring.cloud.common.vo.PageBean;
 import com.spring.cloud.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -142,8 +143,12 @@ public class CompanyController {
      */
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
     public BdjrResult findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize){
+        PageBean pageBean = new PageBean();
+        pageBean.setPageNum(pageNum);
+        pageBean.setPageSize(pageSize);
+        companyUser.setPageBean(pageBean);
         // 分页信息传递
-        PageResult<Company> company = companyService.findAllCompany(companyUser, pageNum, pageSize);
+        PageResult<Company> company = companyService.findAllCompany(companyUser);
 
         if(company.getList().size() > 0) {
             return new BdjrResult.Builder<>().success(new DataResult.Builder().build(company)).build();

@@ -50,8 +50,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public PageResult<Company> findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize) {
-        return companyFeign.findAllCompany(companyUser, pageNum, pageSize);
+    public PageResult<Company> findAllCompany(CompanyUser companyUser) {
+        return companyFeign.findAllCompany(companyUser);
     }
 
 }
