@@ -1,6 +1,7 @@
 package com.bdjr.client.app.service.company;
 
 import com.spring.cloud.common.po.Company;
+import com.spring.cloud.common.vo.CompanyOrderVo;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.PageResult;
 
@@ -29,6 +30,13 @@ public interface CompanyService {
      * @return
      */
     String updateCompany(CompanyUser companyUser);
+
+    /**
+     * 修改公司同时修改订单
+     * @param companyOrderVo
+     * @return
+     */
+    String updateCompanyOrder(CompanyOrderVo companyOrderVo);
 
     /**
      * 删除公司

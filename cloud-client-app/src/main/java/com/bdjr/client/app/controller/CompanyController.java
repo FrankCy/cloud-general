@@ -4,10 +4,9 @@ import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
-import com.spring.cloud.common.vo.CompanyUser;
-import com.spring.cloud.common.vo.DataResult;
-import com.spring.cloud.common.vo.PageBean;
-import com.spring.cloud.common.vo.PageResult;
+import com.spring.cloud.common.vo.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CompanyController {
 
+    private static final Log logger = LogFactory.getLog(CompanyController.class);
+
     @Autowired
     protected CompanyService companyService;
 
@@ -42,6 +43,8 @@ public class CompanyController {
     public BdjrResult insertCompany(CompanyUser companyUser){
 
         String insertCompanyMessage = companyService.insertCompany(companyUser);
+
+        logger.info("创建公司，服务器返回：" + insertCompanyMessage);
 
         if(!StringUtils.isEmpty(insertCompanyMessage) && Constants.operaterSuccess.equals(insertCompanyMessage)) {
             return new BdjrResult.Builder<>().success("新增成功").build();
@@ -155,6 +158,27 @@ public class CompanyController {
         } else {
             return new BdjrResult.Builder<>().failure("查询失败，未找到对应数据").build();
         }
+    }
+
+    /**
+     * @description：修改公司信息，同时修改订单信息
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/14 下午6:34
+     * @mofified By:
+     */
+    @RequestMapping(value = "/updateCompanyOrder", method = RequestMethod.POST)
+    public BdjrResult updateCompanyOrder(CompanyOrderVo companyOrderVo){
+
+        String updateCompanyMessage = companyService.updateCompanyOrder(companyOrderVo);
+
+        if(!StringUtils.isEmpty(updateCompanyMessage) && Constants.operaterSuccess.equals(updateCompanyMessage)) {
+            return new BdjrResult.Builder<>().success("修改成功").build();
+        } else {
+            return new BdjrResult.Builder<>().failure("修改失败").build();
+        }
+
     }
 
 }
