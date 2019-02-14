@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.process.order.mapper.OrderMainMapper">
+  <resultMap id="BaseResultMap" type="com.spring.cloud.common.po.OrderMain">
+    <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <result column="o_title" jdbcType="VARCHAR" property="oTitle" />
+    <result column="o_des" jdbcType="VARCHAR" property="oDes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    o_id, o_title, o_des
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_main
+    where o_id = #{oId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_main
+    where o_id = #{oId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spring.cloud.common.po.OrderMain">
+    insert into order_main (o_id, o_title, o_des
+      )
+    values (#{oId,jdbcType=INTEGER}, #{oTitle,jdbcType=VARCHAR}, #{oDes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spring.cloud.common.po.OrderMain">
+    insert into order_main
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="oTitle != null">
+        o_title,
+      </if>
+      <if test="oDes != null">
+        o_des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="oTitle != null">
+        #{oTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="oDes != null">
+        #{oDes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spring.cloud.common.po.OrderMain">
+    update order_main
+    <set>
+      <if test="oTitle != null">
+        o_title = #{oTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="oDes != null">
+        o_des = #{oDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spring.cloud.common.po.OrderMain">
+    update order_main
+    set o_title = #{oTitle,jdbcType=VARCHAR},
+      o_des = #{oDes,jdbcType=VARCHAR}
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+</mapper>

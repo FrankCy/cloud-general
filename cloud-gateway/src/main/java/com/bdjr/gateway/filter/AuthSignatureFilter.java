@@ -25,8 +25,6 @@ public class AuthSignatureFilter implements GlobalFilter, Ordered {
 
     private static final Log logger = LogFactory.getLog(AuthSignatureFilter.class);
 
-    private static final String COUNT_START_TIME = "countStartTime";
-
     /**
      * 拦截请求，获取authToken，并校验，设置
      * @param exchange

@@ -19,6 +19,8 @@
         <module>cloud-client-app</module>
         <module>cloud-common</module>
         <module>cloud-gateway</module>
+        <module>cloud-data-process-user</module>
+        <module>cloud-data-process-order</module>
     </modules>
 
     <properties>
