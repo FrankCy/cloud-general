@@ -22,4 +22,8 @@ public class OrderFallback implements OrderFeign {
         return new String("新增订单信息失败！FeignClient");
     }
 
+    @Override
+    public String updateOrder(OrderMainVo orderMainVo) {
+        return new String("修改订单信息失败！FeignClient");
+    }
 }

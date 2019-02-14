@@ -21,4 +21,12 @@ public interface OrderService {
      */
     String insertOrder(OrderMainVo orderMainVo);
 
+
+    /**
+     * 修改订单
+     * @param orderMainVo
+     * @return
+     */
+    String updateOrder(OrderMainVo orderMainVo);
+
 }

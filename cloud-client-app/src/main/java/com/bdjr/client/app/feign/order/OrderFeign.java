@@ -24,4 +24,7 @@ public interface OrderFeign {
     @RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
     String insertOrder(@RequestBody OrderMainVo orderMainVo);
 
+    @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
+    String updateOrder(@RequestBody OrderMainVo orderMainVo);
+
 }

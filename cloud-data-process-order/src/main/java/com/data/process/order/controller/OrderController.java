@@ -4,6 +4,7 @@ import com.data.process.order.config.OrderConfig;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.po.OrderMain;
+import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.OrderMainVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,23 @@ public class OrderController {
 
         //判断并响应结果
         if(orderConfig.insertOrder(orderMain) > 0) {
+            return Constants.operaterSuccess;
+        } else  {
+            return Constants.operaterError;
+        }
+    }
+
+    @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
+    public String updateOrder(@RequestBody OrderMainVo orderMainVo){
+
+        //声明实体对象
+        OrderMain orderMain = new OrderMain();
+
+        //将VO内相同的值放到PO内
+        BeanUtils.copyProperties(orderMainVo, orderMain);
+
+        //判断并响应结果
+        if(orderConfig.updateOrder(orderMain) > 0) {
             return Constants.operaterSuccess;
         } else  {
             return Constants.operaterError;

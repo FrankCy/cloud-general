@@ -28,4 +28,11 @@ public class OrderServiceImpl implements OrderService {
         // TODO 这里可以做客户端的逻辑处理
         return orderFeign.insertOrder(orderMainVo);
     }
+
+    @Override
+    public String updateOrder(OrderMainVo orderMainVo) {
+        // TODO 这里可以做客户端的逻辑处理
+        return orderFeign.updateOrder(orderMainVo);
+    }
+
 }
