@@ -1,5 +1,8 @@
 package com.data.process.order.config;
 
+import com.data.process.order.mapper.OrderMainMapper;
+import com.spring.cloud.common.po.OrderMain;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,4 +17,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class OrderConfig {
+
+    /**
+     * 订单查询dao
+     */
+    @Autowired
+    private OrderMainMapper orderMainMapper;
+
+    public int insertOrder(OrderMain orderMain) {
+        //TODO 具体的业务实现处理
+        return orderMainMapper.insertSelective(orderMain);
+    }
+
 }
