@@ -1,7 +1,7 @@
 package com.bdjr.client.app.feign.company;
 
 import com.bdjr.client.app.fallback.company.CompanyFallback;
-import com.spring.cloud.common.config.FeignLogConfiguration;
+import com.bdjr.client.app.config.FeignLogConfiguration;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.PageResult;

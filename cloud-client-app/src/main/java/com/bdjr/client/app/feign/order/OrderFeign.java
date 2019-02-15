@@ -1,7 +1,7 @@
 package com.bdjr.client.app.feign.order;
 
 import com.bdjr.client.app.fallback.order.OrderFallback;
-import com.spring.cloud.common.config.FeignLogConfiguration;
+import com.bdjr.client.app.config.FeignLogConfiguration;
 import com.spring.cloud.common.vo.OrderMainVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;

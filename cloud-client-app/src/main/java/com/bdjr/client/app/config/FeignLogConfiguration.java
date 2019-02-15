@@ -1,4 +1,4 @@
-package com.spring.cloud.common.config;
+package com.bdjr.client.app.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

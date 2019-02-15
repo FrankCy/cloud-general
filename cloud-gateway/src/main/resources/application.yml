@@ -16,11 +16,6 @@ spring:
         order: 0
         predicates:
         - Path=/**
-      - id: cloud-client-pc
-        uri: http://www.baidu.com
-        order: 0
-        predicates:
-        - Path=/pc/**
     consul:
       host: 127.0.0.1
       port: 8500

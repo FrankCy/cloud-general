@@ -14,8 +14,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date: 2019/1/30 下午4:26
  * @mofified By:
  */
-@EnableFeignClients
 @SpringBootApplication
+@EnableFeignClients
 public class ClientAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(ClientAppApplication.class, args);

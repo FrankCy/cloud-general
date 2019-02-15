@@ -30,6 +30,8 @@ feign:
   # 设置Hystrix熔断
   hystrix:
     enabled: true
+  httpclient:
+    enabled: false
   # 设置okhttp替换默认feign client
   okhttp:
     enabled: true

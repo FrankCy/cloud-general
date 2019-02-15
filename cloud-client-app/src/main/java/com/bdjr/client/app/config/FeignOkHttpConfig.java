@@ -1,4 +1,4 @@
-package com.spring.cloud.common.config;
+package com.bdjr.client.app.config;
 
 import feign.Feign;
 import okhttp3.ConnectionPool;
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @ConditionalOnClass(Feign.class)
 @AutoConfigureBefore(FeignAutoConfiguration.class)
-public class FeignOKHttpConfiguration {
+public class FeignOkHttpConfig {
 
     @Bean
     public okhttp3.OkHttpClient okHttpClient() {
