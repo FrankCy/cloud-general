@@ -69,14 +69,15 @@ public class CompanyServiceImpl implements CompanyService {
         logger.info("公司修改：" + companyUpdateFlag);
         logger.info("订单修改：" + orderUpdateFlag);
 
-        if(!StringUtils.isEmpty(companyUpdateFlag) &&
-                Constants.operaterSuccess.equals(companyUpdateFlag) &&
-                !StringUtils.isEmpty(orderUpdateFlag) &&
-                Constants.operaterSuccess.equals(orderUpdateFlag)) {
-            return Constants.operaterSuccess;
-        } else {
+        if(!StringUtils.isEmpty(companyUpdateFlag) || !StringUtils.isEmpty(orderUpdateFlag)) {
             return Constants.operaterError;
         }
+
+        if(Constants.operaterSuccess.equals(companyUpdateFlag) && Constants.operaterSuccess.equals(orderUpdateFlag)) {
+            return Constants.operaterSuccess;
+        }
+
+        return Constants.operaterError;
 
     }
 
