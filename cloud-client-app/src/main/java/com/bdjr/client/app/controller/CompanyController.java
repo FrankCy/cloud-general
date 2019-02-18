@@ -1,16 +1,19 @@
 package com.bdjr.client.app.controller;
 
 import com.bdjr.client.app.service.company.CompanyService;
+import com.bdjr.client.app.service.pzh.PzhService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.vo.*;
+import feign.Param;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,6 +33,9 @@ public class CompanyController {
 
     @Autowired
     protected CompanyService companyService;
+
+    @Autowired
+    protected PzhService pzhService;
 
     /**
      * @description：新增公司信息
@@ -179,6 +185,22 @@ public class CompanyController {
             return new BdjrResult.Builder<>().failure("修改失败").build();
         }
 
+    }
+
+    /**
+     * @description：
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2019/2/18 下午5:45
+     * @mofified By:
+     */
+    @RequestMapping(value = "/pzhRequestTest", method = RequestMethod.POST)
+    public BdjrResult pzhRequestTest(String q) {
+        String pzhStatus = pzhService.pzhRequestTest(q);
+        return StringUtils.isEmpty(pzhStatus) ?
+                new BdjrResult.Builder<>().failure("请求失败").build() :
+                new BdjrResult.Builder<>().success("请求成功", pzhStatus).build();
     }
 
 }

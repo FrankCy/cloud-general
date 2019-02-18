@@ -1,9 +1,7 @@
 package com.data.process.order.config;
 
 import com.data.process.order.mapper.OrderMainMapper;
-import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.po.OrderMain;
-import com.spring.cloud.common.vo.OrderMainVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
