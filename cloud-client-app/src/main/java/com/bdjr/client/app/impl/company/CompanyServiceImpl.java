@@ -63,7 +63,7 @@ public class CompanyServiceImpl implements CompanyService {
         //修改公司信息
         String companyUpdateFlag = companyFeign.updateCompany(companyUser);
 
-        //修改公司信息
+        //修改订单信息
         String orderUpdateFlag = orderFeign.updateOrder(orderMainVo);
 
         logger.info("公司修改：" + companyUpdateFlag);

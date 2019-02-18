@@ -26,7 +26,7 @@ public class BasicController {
      */
     @GetMapping("/order_health")
     public String health() {
-        logger.info("Order_执行健康检测");
+        logger.info("Order 执行健康检测");
         return "SUCCESS";
     }
 
