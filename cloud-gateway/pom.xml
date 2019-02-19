@@ -36,6 +36,12 @@
             <artifactId>spring-expression</artifactId>
             <version>4.3.17.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
     </dependencies>
 
     <build>

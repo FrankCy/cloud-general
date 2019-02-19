@@ -33,6 +33,10 @@ public class FeignRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
+
+        //打印请求参数
+        logger.info("方法：" + requestTemplate.url() +" —— 参数：["+requestTemplate.queries().toString() + "]");
+
         //Feign 不支持GET方法传POJO， json body转query
         if(requestTemplate.method().equals("GET") && requestTemplate.body() != null) {
             try {
