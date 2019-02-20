@@ -1,10 +1,11 @@
 package com.bdjr.client.app.controller;
 
 import com.bdjr.client.app.service.company.CompanyService;
-import com.bdjr.client.app.service.pzh.PzhService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.util.JSONUtil;
+import com.spring.cloud.common.util.StringUtil;
 import com.spring.cloud.common.vo.*;
 import feign.Param;
 import org.apache.commons.logging.Log;
@@ -34,9 +35,6 @@ public class CompanyController {
     @Autowired
     protected CompanyService companyService;
 
-    @Autowired
-    protected PzhService pzhService;
-
     /**
      * @description：新增公司信息
      * @version 1.0
@@ -46,7 +44,15 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
-    public BdjrResult insertCompany(CompanyUser companyUser){
+    public BdjrResult insertCompany(@RequestParam("value") String value){
+
+        if(StringUtils.isEmpty(value)) {
+            return new BdjrResult.Builder<>().failure("新增失败，未获取到对应参数").build();
+        }
+
+        logger.info("value : " + value);
+
+        CompanyUser companyUser = JSONUtil.jsonToBean(value, CompanyUser.class);
 
         String insertCompanyMessage = companyService.insertCompany(companyUser);
 
@@ -185,22 +191,6 @@ public class CompanyController {
             return new BdjrResult.Builder<>().failure("修改失败").build();
         }
 
-    }
-
-    /**
-     * @description：
-     * @version 1.0
-     * @author: Yang.Chang
-     * @email: cy880708@163.com
-     * @date: 2019/2/18 下午5:45
-     * @mofified By:
-     */
-    @RequestMapping(value = "/pzhRequestTest", method = RequestMethod.POST)
-    public BdjrResult pzhRequestTest(String q) {
-        String pzhStatus = pzhService.pzhRequestTest(q);
-        return StringUtils.isEmpty(pzhStatus) ?
-                new BdjrResult.Builder<>().failure("请求失败").build() :
-                new BdjrResult.Builder<>().success("请求成功", pzhStatus).build();
     }
 
 }

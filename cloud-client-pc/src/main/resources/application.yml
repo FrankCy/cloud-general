@@ -1,0 +1,22 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: cloud-client-pc
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+# 设置超时
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 12000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0

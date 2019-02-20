@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class GatewayApplication {
 
+/*
     @Bean
     public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
@@ -30,6 +31,7 @@ public class GatewayApplication {
                 )
                 .build();
     }
+*/
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);

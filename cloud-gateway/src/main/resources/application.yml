@@ -13,9 +13,15 @@ spring:
       routes:
       - id: cloud-client-app
         uri: http://127.0.0.1:8081
-        order: 0
         predicates:
-        - Path=/**
+        - Path=/app/**
+        filters:
+        - StripPrefix= 1
+        - InjectParameter
+      - id: cloud-client-pc
+        uri: http://127.0.0.1:8082
+        predicates:
+        - Path=/pc/**
     consul:
       host: 127.0.0.1
       port: 8500

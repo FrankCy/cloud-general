@@ -21,6 +21,9 @@
         <module>cloud-gateway</module>
         <module>cloud-data-process-user</module>
         <module>cloud-data-process-order</module>
+        <module>cloud-client-pc</module>
+        <module>cloud-common-web</module>
+        <module>cloud-common-core</module>
     </modules>
 
     <properties>
