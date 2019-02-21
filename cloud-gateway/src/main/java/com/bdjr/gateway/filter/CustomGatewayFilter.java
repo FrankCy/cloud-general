@@ -22,7 +22,6 @@ public class CustomGatewayFilter implements GatewayFilter, Ordered {
 
     private static final Log logger = LogFactory.getLog(CustomGatewayFilter.class);
 
-
     private static final String COUNT_Start_TIME = "countStartTime";
 
     /**

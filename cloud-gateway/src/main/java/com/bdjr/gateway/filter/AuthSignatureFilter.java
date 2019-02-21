@@ -64,8 +64,10 @@ public class AuthSignatureFilter implements GlobalFilter, Ordered {
             String requestId = params.getFirst("requestId");
             //请求方法（具体的Controller）
             String method = params.getFirst("method");
+
             //请求参数
             String values = params.getFirst("value");
+
             //签名
             String sign = params.getFirst("sign");
 
