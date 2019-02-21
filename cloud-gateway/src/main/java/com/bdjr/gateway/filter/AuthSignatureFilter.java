@@ -89,7 +89,7 @@ public class AuthSignatureFilter implements GlobalFilter, Ordered {
 
             // 重定向到对应方法
 
-            //向headers中放信息，记得build
+            // 向headers中放信息，记得build
 //            ServerHttpRequest host = exchange.getRequest().mutate().header("a", "888").build();
             logger.info("exchange.getRequest().mutate().toString() : " + exchange.getRequest().mutate().toString());
 

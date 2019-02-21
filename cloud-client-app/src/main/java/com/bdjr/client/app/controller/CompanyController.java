@@ -12,10 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @version 1.0
@@ -44,7 +41,7 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
-    public BdjrResult insertCompany(@RequestParam("value") String value){
+    public BdjrResult insertCompany(@RequestBody String value){
 
         if(StringUtils.isEmpty(value)) {
             return new BdjrResult.Builder<>().failure("新增失败，未获取到对应参数").build();

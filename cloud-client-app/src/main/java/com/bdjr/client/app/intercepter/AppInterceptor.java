@@ -29,7 +29,7 @@ public class AppInterceptor implements HandlerInterceptor {
         //打印请求数据
         Map parameterMap = request.getParameterMap();
         if(parameterMap.get("value") != null) {
-            logger.info("value : " +parameterMap.get("value").toString());
+            logger.info("请求的数据为 : " +parameterMap.get("value").toString());
         }
 
         //打印请求地址
