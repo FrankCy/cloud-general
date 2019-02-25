@@ -40,13 +40,21 @@
         </dependency>
     </dependencies>
 
+    <!-- 依赖管理 -->
     <dependencyManagement>
+        <!-- 添加依赖 -->
         <dependencies>
+            <!-- 依赖 -->
             <dependency>
+                <!-- 依赖所属卒 -->
                 <groupId>org.springframework.cloud</groupId>
+                <!-- 依赖唯一标记 -->
                 <artifactId>spring-cloud-dependencies</artifactId>
+                <!-- 版本 -->
                 <version>${spring-cloud.version}</version>
+                <!-- 类型 -->
                 <type>pom</type>
+                <!-- 作用域 -->
                 <scope>import</scope>
             </dependency>
         </dependencies>

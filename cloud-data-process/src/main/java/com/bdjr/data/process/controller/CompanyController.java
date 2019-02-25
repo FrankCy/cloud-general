@@ -2,6 +2,7 @@ package com.bdjr.data.process.controller;
 
 import com.bdjr.data.process.config.CompanyConfig;
 import com.spring.cloud.common.base.Constants;
+import com.spring.cloud.common.em.CompanyEnum;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.PageBean;
@@ -84,6 +85,7 @@ public class CompanyController {
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.GET)
     public PageResult<Company> findAllCompany(CompanyUser companyUser){
 
+        
         PageBean pageBean = companyUser.getPageBean();
         pageBean.setPageSize(pageBean.getPageSize());
         pageBean.setPageNum(pageBean.getPageNum());
