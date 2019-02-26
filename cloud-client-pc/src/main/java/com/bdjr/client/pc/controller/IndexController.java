@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @mofified By:
  */
 @RestController
-@RequestMapping("/pc")
 public class IndexController {
 
     private static final Log logger = LogFactory.getLog(IndexController.class);

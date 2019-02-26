@@ -15,6 +15,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Map;
@@ -54,14 +55,27 @@ public class AuthSignatureFilter implements GlobalFilter, Ordered {
         ServerHttpRequest serverHttpRequest = exchange.getRequest();
         String resType = serverHttpRequest.getMethodValue();
 
+        InetAddress inetAddress = serverHttpRequest.getRemoteAddress().getAddress();
+        String hostName = serverHttpRequest.getRemoteAddress().getHostName();
+        String hostString = serverHttpRequest.getRemoteAddress().getHostString();
+        int port = serverHttpRequest.getRemoteAddress().getPort();
+
+        logger.info("inetAddress :" + inetAddress);
+        logger.info("hostName :" + hostName);
+        logger.info("hostString :" + hostString);
+        logger.info("port :" + port);
+
         if (POST_RES.equals(resType)) {
             MultiValueMap<String, String> params = exchange.getRequest().getQueryParams();
             //token
             String token = params.getFirst("authToken");
+
             //设备ID
             String deviceId = params.getFirst("deviceId");
+
             //请求ID
             String requestId = params.getFirst("requestId");
+
             //请求方法（具体的Controller）
             String method = params.getFirst("method");
 
@@ -90,10 +104,11 @@ public class AuthSignatureFilter implements GlobalFilter, Ordered {
             // 重定向到对应方法
 
             // 向headers中放信息，记得build
-//            ServerHttpRequest host = exchange.getRequest().mutate().header("a", "888").build();
+            ServerHttpRequest host = exchange.getRequest().mutate().header("memberIp", hostName).build();
             logger.info("exchange.getRequest().mutate().toString() : " + exchange.getRequest().mutate().toString());
+            ServerWebExchange build = exchange.mutate().request(host).build();
 
-            return chain.filter(exchange);
+            return chain.filter(build);
         } else
         if(GET_RES.equals(resType)) {
             Map requestQueryParams = serverHttpRequest.getQueryParams();

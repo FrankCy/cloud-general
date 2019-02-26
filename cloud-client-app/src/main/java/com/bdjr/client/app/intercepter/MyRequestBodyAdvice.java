@@ -1,8 +1,10 @@
 package com.bdjr.client.app.intercepter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.spring.cloud.common.config.SecurityParameter;
 import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.util.DESHelper;
+import com.spring.cloud.common.util.JSONUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -41,6 +43,8 @@ public class MyRequestBodyAdvice implements RequestBodyAdvice {
     private static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
     private static final String DEFAULT_VAL_KEY = "value=";
+
+    private static final String MEMBER_IP = "memberIp";
 
     /**
      * 是否解密
@@ -90,7 +94,18 @@ public class MyRequestBodyAdvice implements RequestBodyAdvice {
             this.headers = inputMessage.getHeaders();
             String bodyMessage = FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), "utf-8"));
             if (encode) {
-                this.body = IOUtils.toInputStream(DESHelper.decrypt(easpString(URLDecoder.decode(bodyMessage, "utf-8"))));
+                // 判断是否传递用户IP
+                if(headers.containsKey(MEMBER_IP)) {
+                    // 截取value
+                    String initVal = easpString(URLDecoder.decode(bodyMessage, "utf-8"));
+                    // 解密
+                    String decodeVal = DESHelper.decrypt(initVal);
+                    JSONObject jsonObject = JSONObject.parseObject(decodeVal);
+                    jsonObject.put(MEMBER_IP, headers.get("memberIp").toString());
+                    this.body = IOUtils.toInputStream(jsonObject.toJSONString());
+                } else {
+                    this.body = IOUtils.toInputStream(DESHelper.decrypt(easpString(URLDecoder.decode(bodyMessage, "utf-8"))));
+                }
             } else {
                 this.body = IOUtils.toInputStream(easpString(URLDecoder.decode(bodyMessage, "utf-8")));
             }

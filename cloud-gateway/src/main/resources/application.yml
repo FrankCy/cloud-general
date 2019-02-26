@@ -22,10 +22,8 @@ spring:
         uri: http://127.0.0.1:8082
         predicates:
         - Path=/pc/**
-      - id: cloud-client-admin
-        uri: http://127.0.0.1:8083
-        predicates:
-        - Path=/adminn/**
+        filters:
+        - StripPrefix= 1
     consul:
       host: 127.0.0.1
       port: 8500
