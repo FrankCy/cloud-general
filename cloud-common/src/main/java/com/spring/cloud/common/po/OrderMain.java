@@ -1,6 +1,11 @@
 package com.spring.cloud.common.po;
 
-public class OrderMain {
+import java.io.Serializable;
+
+public class OrderMain implements Serializable {
+
+    private static final long serialVersionUID = -8794096017323294905L;
+
     private Integer oId;
 
     private String oTitle;

@@ -5,14 +5,15 @@ import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.util.JSONUtil;
-import com.spring.cloud.common.util.StringUtil;
 import com.spring.cloud.common.vo.*;
-import feign.Param;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @version 1.0

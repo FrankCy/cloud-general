@@ -14,6 +14,7 @@ import java.util.List;
 public class DataResult<T> implements Serializable{
 
     private Long total;
+
     private List<T> rows;
 
     public DataResult(Long total, List<T> rows) {
