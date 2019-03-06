@@ -44,11 +44,12 @@ public class ClientAppFilter implements Filter {
 
         //访问地址
         String uri = request.getRequestURI();
-        if("自定义请求URL".equals(uri) || "自定义请求URL".equals(uri)) {
+        if("/insertCompany".equals(uri) || "/insertCompany".equals(uri)) {
             String token = request.getParameter("token");
             if(StringUtils.isEmpty(token)) {
                 HashMap hashMap = new HashMap(request.getParameterMap());
-                hashMap.put("token", "修改了个值");
+                String[] str = {"修改了个值"};
+                hashMap.put("token", str);
                 HttpServletRequest req =  request;
                 ParameterRequestWrapper wrapRequest = new ParameterRequestWrapper(req, hashMap);
                 request.getParameterMap();

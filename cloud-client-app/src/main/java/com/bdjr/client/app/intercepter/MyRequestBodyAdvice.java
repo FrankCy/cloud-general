@@ -49,7 +49,7 @@ public class MyRequestBodyAdvice implements RequestBodyAdvice {
     /**
      * 是否解密
      */
-    private static boolean encode = true;
+    private static boolean encode = false;
 
     @Override
     public boolean supports(MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {
