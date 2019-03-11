@@ -30,7 +30,7 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
     /**
      * 是否解密
      */
-    private static boolean encode = true;
+    private static boolean encode = false;
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {

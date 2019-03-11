@@ -1,5 +1,7 @@
 package com.spring.cloud.common.po;
 
+import com.spring.cloud.common.em.CompanyStatusEnum;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +16,9 @@ import java.io.Serializable;
  */
 public class Company implements Serializable {
 
+
+    private static final long serialVersionUID = -1505541566786459102L;
+
     private Integer cId;
 
     private String cCode;
@@ -21,6 +26,8 @@ public class Company implements Serializable {
     private String cName;
 
     private String cDes;
+
+    private CompanyStatusEnum status;
 
     public Integer getcId() {
         return cId;
@@ -52,5 +59,24 @@ public class Company implements Serializable {
 
     public void setcDes(String cDes) {
         this.cDes = cDes;
+    }
+
+    public CompanyStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(CompanyStatusEnum status) {
+        this.status = status;
+    }
+
+    public Company() {
+    }
+
+    public Company(Integer cId, String cCode, String cName, String cDes, CompanyStatusEnum status) {
+        this.cId = cId;
+        this.cCode = cCode;
+        this.cName = cName;
+        this.cDes = cDes;
+        this.status = status;
     }
 }

@@ -10,7 +10,7 @@ package com.spring.cloud.common.em;
  * @date: 2019/2/25 上午10:48
  * @mofified By:
  */
-public enum CompanyEnum {
+public enum CompanyStatusEnum implements IEnum {
 
     SUBSISTING("subsisting","存续"),
 
@@ -32,7 +32,7 @@ public enum CompanyEnum {
 
     private final String value;
 
-    private CompanyEnum (String key,String value){
+    private CompanyStatusEnum (String key,String value){
         this.key = key;
         this.value = value;
     }
@@ -42,11 +42,11 @@ public enum CompanyEnum {
      * @param key
      * @return
      */
-    public static CompanyEnum getEnumByKey(String key){
+    public static CompanyStatusEnum getEnumByKey(String key){
         if(null == key){
             return null;
         }
-        for(CompanyEnum temp:CompanyEnum.values()){
+        for(CompanyStatusEnum temp:CompanyStatusEnum.values()){
             if(temp.getKey().equals(key)){
                 return temp;
             }
@@ -54,12 +54,24 @@ public enum CompanyEnum {
         return null;
     }
 
+    @Override
     public String getKey() {
         return key;
     }
 
+    @Override
+    public void setKey(int key) {
+
+    }
+
+    @Override
     public String getValue() {
         return value;
     }
-    
+
+    @Override
+    public void setValue(String value) {
+
+    }
+
 }

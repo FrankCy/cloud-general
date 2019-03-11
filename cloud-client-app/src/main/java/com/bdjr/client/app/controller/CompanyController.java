@@ -2,6 +2,7 @@ package com.bdjr.client.app.controller;
 
 import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.base.Constants;
+import com.spring.cloud.common.em.CompanyStatusEnum;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.result.BdjrResult;
 import com.spring.cloud.common.util.JSONUtil;
@@ -51,6 +52,12 @@ public class CompanyController {
         logger.info("value : " + value);
 
         CompanyUser companyUser = JSONUtil.jsonToBean(value, CompanyUser.class);
+
+        if(companyUser.getStatus() == CompanyStatusEnum.SUBSISTING) {
+            logger.info("Enum : " + CompanyStatusEnum.SUBSISTING);
+            logger.info("key : " + CompanyStatusEnum.SUBSISTING.getKey());
+            logger.info("value : " + CompanyStatusEnum.SUBSISTING.getValue());
+        }
 
         String insertCompanyMessage = companyService.insertCompany(companyUser);
 

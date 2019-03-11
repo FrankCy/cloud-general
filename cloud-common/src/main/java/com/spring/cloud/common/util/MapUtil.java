@@ -1,5 +1,6 @@
 package com.spring.cloud.common.util;
 
+import com.spring.cloud.common.em.CompanyStatusEnum;
 import com.spring.cloud.common.po.Company;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -311,11 +312,7 @@ class TextUtil {
     }
 
     public static void main(String[] args) {
-        Company company = new Company();
-        company.setcId(1);
-        company.setcName("公司名");
-        company.setcDes("描述");
-        company.setcCode("code");
+        Company company = new Company(1, "code", "描述信息", "公司名称", CompanyStatusEnum.SUBSISTING);
 
         try {
             Map<String, Object> map = objectToMap(company);

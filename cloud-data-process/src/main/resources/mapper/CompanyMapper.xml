@@ -6,6 +6,7 @@
         <result column="c_name" jdbcType="VARCHAR" property="cName" />
         <result column="c_des" jdbcType="VARCHAR" property="cDes" />
         <result column="c_code" jdbcType="VARCHAR" property="cCode" />
+        <result column="status" jdbcType="VARCHAR" typeHandler="com.spring.cloud.common.typehandler.EnumKeyTypeHandler" property="status" />
     </resultMap>
 
     <sql id="BASE_TABLE">
@@ -13,20 +14,20 @@
     </sql>
 
     <sql id="BASE_COLUMN">
-      c_id,c_name,c_des,c_code
+      c_id,c_name,c_des,c_code,status
     </sql>
 
     <insert id="insertCompany" parameterType="com.spring.cloud.common.po.Company">
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            c_name,c_des,
+            c_name,c_des,status,
             <if test="cCode != null">
                 c_code,
             </if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{cName, jdbcType=VARCHAR},#{cDes, jdbcType=VARCHAR},
+            #{cName, jdbcType=VARCHAR},#{cDes, jdbcType=VARCHAR},#{status, typeHandler=com.spring.cloud.common.typehandler.EnumKeyTypeHandler},
             <if test="cCode != null">
                 #{cCode, jdbcType=VARCHAR},
             </if>
@@ -51,6 +52,9 @@
             </if>
             <if test="cDes != null">
                 c_des = #{cDes,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,typeHandler=com.spring.cloud.common.typehandler.EnumKeyTypeHandler},
             </if>
         </set>
         where c_id = #{cId,jdbcType=VARCHAR}
