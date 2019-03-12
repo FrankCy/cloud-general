@@ -1,7 +1,7 @@
 package com.bdjr.client.app.feign.company;
 
 import com.bdjr.client.app.fallback.company.CompanyFallback;
-import com.bdjr.client.app.config.FeignLogConfiguration;
+import com.bdjr.client.app.config.FeignConfiguration;
 import com.spring.cloud.common.po.Company;
 import com.spring.cloud.common.vo.CompanyUser;
 import com.spring.cloud.common.vo.PageResult;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date: 2019/1/30 下午4:34
  * @mofified By:
  */
-@FeignClient(name = "cloud-data-process", configuration = FeignLogConfiguration.class, fallback= CompanyFallback.class)
+@FeignClient(name = "cloud-data-process", configuration = FeignConfiguration.class, fallback= CompanyFallback.class)
 public interface CompanyFeign {
 
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)

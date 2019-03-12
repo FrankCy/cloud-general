@@ -1,6 +1,7 @@
 package com.bdjr.client.app.config;
 
 import feign.Logger;
+import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * @mofified By:
  */
 @Configuration
-public class FeignLogConfiguration {
+public class FeignConfiguration {
 
     /**
      *
