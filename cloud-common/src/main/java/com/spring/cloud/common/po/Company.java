@@ -1,5 +1,6 @@
 package com.spring.cloud.common.po;
 
+import com.spring.cloud.common.em.CompanyFlagEnum;
 import com.spring.cloud.common.em.CompanyStatusEnum;
 
 import java.io.Serializable;
@@ -28,6 +29,8 @@ public class Company implements Serializable {
     private String cDes;
 
     private CompanyStatusEnum status;
+
+    private CompanyFlagEnum flag;
 
     public Integer getcId() {
         return cId;
@@ -69,14 +72,23 @@ public class Company implements Serializable {
         this.status = status;
     }
 
+    public CompanyFlagEnum getFlag() {
+        return flag;
+    }
+
+    public void setFlag(CompanyFlagEnum flag) {
+        this.flag = flag;
+    }
+
     public Company() {
     }
 
-    public Company(Integer cId, String cCode, String cName, String cDes, CompanyStatusEnum status) {
+    public Company(Integer cId, String cCode, String cName, String cDes, CompanyStatusEnum status, CompanyFlagEnum flag) {
         this.cId = cId;
         this.cCode = cCode;
         this.cName = cName;
         this.cDes = cDes;
         this.status = status;
+        this.flag = flag;
     }
 }
