@@ -1,5 +1,5 @@
 server:
-  port: 8041
+  port: 8084
 spring:
   application:
     name: cloud-timed-task
