@@ -1,0 +1,55 @@
+server:
+  port: 8041
+spring:
+  application:
+    name: cloud-timed-task
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        # 通过名称来访问consul中多个相同应用名称的provider
+        service-name: cloud-data-process
+        # 这里要设置false，否则会把自己注册到consul中，并提供服务，轮询时会找自己
+        register: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+# 设置超时
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 12000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+
+feign:
+  # 设置Hystrix熔断
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  # 设置okhttp替换默认feign client
+  okhttp:
+    enabled: true
+
+hystrix:
+  shareSecrutiyContext: true
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 100000
+        forceClosed: true
+      execution:
+        timeout:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+# 配置Feign日志
+logging:
+  level:
+    com.bdjr.client.app.feign.company.CompanyFeign: DEBUG

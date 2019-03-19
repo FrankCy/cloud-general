@@ -24,6 +24,7 @@
         <module>cloud-client-pc</module>
         <module>cloud-common-web</module>
         <module>cloud-common-core</module>
+        <module>cloud-timed-task</module>
     </modules>
 
     <properties>
