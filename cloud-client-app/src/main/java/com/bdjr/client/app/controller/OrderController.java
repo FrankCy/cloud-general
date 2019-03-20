@@ -3,7 +3,7 @@ package com.bdjr.client.app.controller;
 import com.bdjr.client.app.service.company.CompanyService;
 import com.bdjr.client.app.service.order.OrderService;
 import com.spring.cloud.common.base.Constants;
-import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.result.ResultModel;
 import com.spring.cloud.common.vo.OrderMainVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -39,14 +39,14 @@ public class OrderController {
      * @mofified By:
      */
     @RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
-    public BdjrResult insertOrder(OrderMainVo orderMainVo){
+    public ResultModel insertOrder(OrderMainVo orderMainVo){
 
         String insertOrderMessage = orderService.insertOrder(orderMainVo);
 
         if(!StringUtils.isEmpty(insertOrderMessage) && Constants.operaterSuccess.equals(insertOrderMessage)) {
-            return new BdjrResult.Builder<>().success("新增成功").build();
+            return new ResultModel.Builder<>().success("新增成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("新增失败").build();
+            return new ResultModel.Builder<>().failure("新增失败").build();
         }
     }
 
@@ -59,14 +59,14 @@ public class OrderController {
      * @mofified By:
      */
     @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
-    public BdjrResult updateOrder(OrderMainVo orderMainVo){
+    public ResultModel updateOrder(OrderMainVo orderMainVo){
 
         String updateOrderMessage = orderService.updateOrder(orderMainVo);
 
         if(!StringUtils.isEmpty(updateOrderMessage) && Constants.operaterSuccess.equals(updateOrderMessage)) {
-            return new BdjrResult.Builder<>().success("修改成功").build();
+            return new ResultModel.Builder<>().success("修改成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("修改失败").build();
+            return new ResultModel.Builder<>().failure("修改失败").build();
         }
     }
 

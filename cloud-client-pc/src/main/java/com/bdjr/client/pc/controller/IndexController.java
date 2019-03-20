@@ -1,6 +1,6 @@
 package com.bdjr.client.pc.controller;
 
-import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.result.ResultModel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +31,14 @@ public class IndexController {
      * @mofified By:
      */
     @RequestMapping(value = "/hello", method = RequestMethod.POST)
-    public BdjrResult insertCompany(){
+    public ResultModel insertCompany(){
 
         logger.info("请求客户端PC" );
 
         if(true) {
-            return new BdjrResult.Builder<>().success("访问成功").build();
+            return new ResultModel.Builder<>().success("访问成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("访问失败").build();
+            return new ResultModel.Builder<>().failure("访问失败").build();
         }
     }
 

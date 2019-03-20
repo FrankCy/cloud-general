@@ -1,7 +1,7 @@
 package com.bdjr.tt.controller;
 
 import com.bdjr.tt.config.QuartzManager;
-import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.result.ResultModel;
 import com.spring.cloud.common.vo.JobVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,11 +51,11 @@ public class JobController {
      * @mofified By:
      */
     @RequestMapping(value = "/initJob", method = RequestMethod.GET)
-    public BdjrResult initJob() {
+    public ResultModel initJob() {
         if(quartzManager.addJob(JOB_INIT_INIT_JOB, JOB_INIT_INI_JOB, JOB_INIT_CRON_EXP)) {
-            return new BdjrResult.Builder<>().success("初始化任务成功").build();
+            return new ResultModel.Builder<>().success("初始化任务成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("初始化任务失败").build();
+            return new ResultModel.Builder<>().failure("初始化任务失败").build();
         }
     }
 
@@ -68,11 +68,11 @@ public class JobController {
      * @mofified By:
      */
     @RequestMapping(value = "/deleteJob" , method = RequestMethod.GET)
-    public BdjrResult deleteJob(@RequestParam("jobName") String jobName) {
+    public ResultModel deleteJob(@RequestParam("jobName") String jobName) {
         if(quartzManager.deleteJob(jobName)) {
-            return new BdjrResult.Builder<>().success("删除任务成功").build();
+            return new ResultModel.Builder<>().success("删除任务成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("删除任务失败").build();
+            return new ResultModel.Builder<>().failure("删除任务失败").build();
         }
     }
 
@@ -85,11 +85,11 @@ public class JobController {
      * @mofified By:
      */
     @RequestMapping(value = "/updateJob", method = RequestMethod.GET)
-    public BdjrResult updateJob(String jobName, String exp) {
+    public ResultModel updateJob(String jobName, String exp) {
         if(quartzManager.updateJob(jobName, exp)) {
-            return new BdjrResult.Builder<>().success("修改任务成功").build();
+            return new ResultModel.Builder<>().success("修改任务成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("修改任务失败").build();
+            return new ResultModel.Builder<>().failure("修改任务失败").build();
         }
     }
 
@@ -102,11 +102,11 @@ public class JobController {
      * @mofified By:
      */
     @RequestMapping(value = "/triggerJob", method = RequestMethod.GET)
-    public BdjrResult triggerJob(String jobName) {
+    public ResultModel triggerJob(String jobName) {
         if(quartzManager.triggerJob(jobName)) {
-            return new BdjrResult.Builder<>().success("任务触发成功").build();
+            return new ResultModel.Builder<>().success("任务触发成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("任务触发失败").build();
+            return new ResultModel.Builder<>().failure("任务触发失败").build();
         }
     }
 
@@ -119,12 +119,12 @@ public class JobController {
      * @mofified By:
      */
     @RequestMapping(value = "/findJobs", method = RequestMethod.GET)
-    public BdjrResult findJobs() {
+    public ResultModel findJobs() {
         List<JobVO> jobVOList = quartzManager.findJobs();
         if(jobVOList.size() > 0 ) {
-            return new BdjrResult.Builder<>().success(jobVOList).build();
+            return new ResultModel.Builder<>().success(jobVOList).build();
         } else {
-            return new BdjrResult.Builder<>().failure("没有正在执行的任务").build();
+            return new ResultModel.Builder<>().failure("没有正在执行的任务").build();
         }
     }
 

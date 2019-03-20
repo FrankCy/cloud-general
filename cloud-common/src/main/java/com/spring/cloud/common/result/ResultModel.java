@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @date: 2018/11/22 下午5:22
  * @mofified By:
  */
-public class BdjrResult<T> implements Serializable {
+public class ResultModel<T> implements Serializable {
 
     private String code;
     private String message;
@@ -42,7 +42,7 @@ public class BdjrResult<T> implements Serializable {
         this.data = data;
     }
 
-    public BdjrResult(Builder<T> builder) {
+    public ResultModel(Builder<T> builder) {
         this.code = builder.code;
         this.message = builder.message;
         this.data = builder.data;
@@ -104,8 +104,8 @@ public class BdjrResult<T> implements Serializable {
             return this;
         }
 
-        public BdjrResult build() {
-            return new BdjrResult(this);
+        public ResultModel build() {
+            return new ResultModel(this);
         }
     }
 

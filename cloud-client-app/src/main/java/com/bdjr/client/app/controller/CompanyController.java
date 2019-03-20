@@ -4,7 +4,7 @@ import com.bdjr.client.app.service.company.CompanyService;
 import com.spring.cloud.common.base.Constants;
 import com.spring.cloud.common.em.CompanyStatusEnum;
 import com.spring.cloud.common.po.Company;
-import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.result.ResultModel;
 import com.spring.cloud.common.util.JSONUtil;
 import com.spring.cloud.common.vo.*;
 import org.apache.commons.logging.Log;
@@ -43,10 +43,10 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/insertCompany", method = RequestMethod.POST)
-    public BdjrResult insertCompany(@RequestBody String value){
+    public ResultModel insertCompany(@RequestBody String value){
 
         if(StringUtils.isEmpty(value)) {
-            return new BdjrResult.Builder<>().failure("新增失败，未获取到对应参数").build();
+            return new ResultModel.Builder<>().failure("新增失败，未获取到对应参数").build();
         }
 
         logger.info("value : " + value);
@@ -64,9 +64,9 @@ public class CompanyController {
         logger.info("创建公司，服务器返回：" + insertCompanyMessage);
 
         if(!StringUtils.isEmpty(insertCompanyMessage) && Constants.operaterSuccess.equals(insertCompanyMessage)) {
-            return new BdjrResult.Builder<>().success("新增成功").build();
+            return new ResultModel.Builder<>().success("新增成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("新增失败").build();
+            return new ResultModel.Builder<>().failure("新增失败").build();
         }
     }
 
@@ -79,25 +79,25 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
-    public BdjrResult deleteCompany(String cId){
+    public ResultModel deleteCompany(String cId){
 
         //判空
         if(StringUtils.isEmpty(cId)) {
-            return new BdjrResult.Builder<>().failure("参数传递错误，请联系管理员！").build();
+            return new ResultModel.Builder<>().failure("参数传递错误，请联系管理员！").build();
         }
 
         //查询是否有对应数据
         Company company = companyService.findCompanyById(cId);
         if(company == null) {
-            return new BdjrResult.Builder<>().failure("未找到对应数据！").build();
+            return new ResultModel.Builder<>().failure("未找到对应数据！").build();
         }
 
         String deleteCompanyMessage = companyService.deleteCompany(cId);
 
         if(!StringUtils.isEmpty(deleteCompanyMessage) && Constants.operaterSuccess.equals(deleteCompanyMessage)) {
-            return new BdjrResult.Builder<>().success("删除成功").build();
+            return new ResultModel.Builder<>().success("删除成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("删除失败").build();
+            return new ResultModel.Builder<>().failure("删除失败").build();
         }
     }
 
@@ -110,25 +110,25 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
-    public BdjrResult updateCompany(CompanyUser companyUser){
+    public ResultModel updateCompany(CompanyUser companyUser){
 
         //判空
         if(StringUtils.isEmpty(companyUser.getcId())) {
-            return new BdjrResult.Builder<>().failure("无效公司，修改失败！").build();
+            return new ResultModel.Builder<>().failure("无效公司，修改失败！").build();
         }
 
         //查询是否有对应数据
         Company company = companyService.findCompanyById(companyUser.getcId().toString());
         if(company == null) {
-            return new BdjrResult.Builder<>().failure("未找到对应数据！").build();
+            return new ResultModel.Builder<>().failure("未找到对应数据！").build();
         }
 
         String updateCompanyMessage = companyService.updateCompany(companyUser);
 
         if(!StringUtils.isEmpty(updateCompanyMessage) && Constants.operaterSuccess.equals(updateCompanyMessage)) {
-            return new BdjrResult.Builder<>().success("修改成功").build();
+            return new ResultModel.Builder<>().success("修改成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("修改失败").build();
+            return new ResultModel.Builder<>().failure("修改失败").build();
         }
 
     }
@@ -142,14 +142,14 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/findCompanyById", method = RequestMethod.POST)
-    public BdjrResult findCompanyById(String cId){
+    public ResultModel findCompanyById(String cId){
         // 分页信息传递
         Company company = companyService.findCompanyById(cId);
 
         if(company != null) {
-            return new BdjrResult.Builder<>().success("查询成功", company).build();
+            return new ResultModel.Builder<>().success("查询成功", company).build();
         } else {
-            return new BdjrResult.Builder<>().failure("查询失败，未找到对应数据").build();
+            return new ResultModel.Builder<>().failure("查询失败，未找到对应数据").build();
         }
     }
 
@@ -162,7 +162,7 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/findAllCompany", method = RequestMethod.POST)
-    public BdjrResult findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize){
+    public ResultModel findAllCompany(CompanyUser companyUser, Integer pageNum, Integer pageSize){
         PageBean pageBean = new PageBean();
         pageBean.setPageNum(pageNum);
         pageBean.setPageSize(pageSize);
@@ -171,9 +171,9 @@ public class CompanyController {
         PageResult<Company> company = companyService.findAllCompany(companyUser);
 
         if(company.getList().size() > 0) {
-            return new BdjrResult.Builder<>().success(new DataResult.Builder().build(company)).build();
+            return new ResultModel.Builder<>().success(new DataResult.Builder().build(company)).build();
         } else {
-            return new BdjrResult.Builder<>().failure("查询失败，未找到对应数据").build();
+            return new ResultModel.Builder<>().failure("查询失败，未找到对应数据").build();
         }
     }
 
@@ -186,14 +186,14 @@ public class CompanyController {
      * @mofified By:
      */
     @RequestMapping(value = "/updateCompanyOrder", method = RequestMethod.POST)
-    public BdjrResult updateCompanyOrder(CompanyOrderVo companyOrderVo){
+    public ResultModel updateCompanyOrder(CompanyOrderVo companyOrderVo){
 
         String updateCompanyMessage = companyService.updateCompanyOrder(companyOrderVo);
 
         if(!StringUtils.isEmpty(updateCompanyMessage) && Constants.operaterSuccess.equals(updateCompanyMessage)) {
-            return new BdjrResult.Builder<>().success("修改成功").build();
+            return new ResultModel.Builder<>().success("修改成功").build();
         } else {
-            return new BdjrResult.Builder<>().failure("修改失败").build();
+            return new ResultModel.Builder<>().failure("修改失败").build();
         }
 
     }

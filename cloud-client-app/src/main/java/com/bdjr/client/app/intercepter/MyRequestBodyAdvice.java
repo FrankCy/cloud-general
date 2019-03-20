@@ -2,7 +2,7 @@ package com.bdjr.client.app.intercepter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.spring.cloud.common.config.SecurityParameter;
-import com.spring.cloud.common.result.BdjrResult;
+import com.spring.cloud.common.result.ResultModel;
 import com.spring.cloud.common.util.DESHelper;
 import com.spring.cloud.common.util.JSONUtil;
 import org.apache.commons.io.IOUtils;
