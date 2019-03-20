@@ -1,5 +1,6 @@
 package com.bdjr.tt;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @mofified By:
  */
 @SpringBootApplication
+@MapperScan("com.bdjr.tt.mapper")
 public class TimedTaskApplication {
     public static void main(String[] args) {
         SpringApplication.run(TimedTaskApplication.class, args);

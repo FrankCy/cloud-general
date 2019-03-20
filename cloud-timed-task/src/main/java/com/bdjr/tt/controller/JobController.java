@@ -2,6 +2,7 @@ package com.bdjr.tt.controller;
 
 import com.bdjr.tt.config.QuartzManager;
 import com.spring.cloud.common.result.ResultModel;
+import com.spring.cloud.common.util.Constants;
 import com.spring.cloud.common.vo.JobVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,17 +28,12 @@ public class JobController {
     /**
      * 初始化定时任务实体
      */
-    private static final String JOB_INIT_INI_JOB = "com.sb.quartz.job.JobInit";
+    private static final String JOB_INIT_INI_JOB = "com.bdjr.tt.job.JobInit";
 
     /**
      * 5s/次
      */
     private static final String JOB_INIT_CRON_EXP = "*/5 * * * * ?";
-
-    /**
-     * 初始化JOB关键字
-     */
-    private static final String JOB_INIT_INIT_JOB = "initJob";
 
     @Autowired
     QuartzManager quartzManager;
@@ -52,7 +48,7 @@ public class JobController {
      */
     @RequestMapping(value = "/initJob", method = RequestMethod.GET)
     public ResultModel initJob() {
-        if(quartzManager.addJob(JOB_INIT_INIT_JOB, JOB_INIT_INI_JOB, JOB_INIT_CRON_EXP)) {
+        if(quartzManager.addJob(Constants.JOB_INIT_INIT_JOB, JOB_INIT_INI_JOB, JOB_INIT_CRON_EXP)) {
             return new ResultModel.Builder<>().success("初始化任务成功").build();
         } else {
             return new ResultModel.Builder<>().failure("初始化任务失败").build();

@@ -24,7 +24,7 @@ public class StartRunner implements CommandLineRunner {
     /**
      * 初始化定时任务实体
      */
-    private static final String JOB_INIT_INI_JOB = "com.sb.quartz.job.JobInit";
+    private static final String JOB_INIT_INI_JOB = "com.bdjr.tt.job.JobInit";
 
     /**
      * 5s/次
