@@ -2,7 +2,6 @@ package com.bdjr.tt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @version 1.0
@@ -15,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @mofified By:
  */
 @SpringBootApplication
-@EnableScheduling
 public class TimedTaskApplication {
     public static void main(String[] args) {
         SpringApplication.run(TimedTaskApplication.class, args);
